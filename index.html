@@ -128,7 +128,7 @@
             </div>
             <div class="stat-box">
                 <div>Days Remaining</div>
-                <div class="remaining" id="days-remaining">17</div>
+                <div class="remaining" id="days-remaining">13</div>
             </div>
             <div class="stat-box">
                 <div>Total Progress</div>
@@ -144,7 +144,14 @@
         
         // Get or set start time
         let startDate;
-       
+        const savedTime = localStorage.getItem(storageKey);
+        
+        if (savedTime) {
+            startDate = new Date(parseInt(savedTime));
+        } else {
+            startDate = new Date();
+            localStorage.setItem(storageKey, startDate.getTime().toString());
+        }
         
         const endDate = new Date(startDate.getTime() + (totalDays * 24 * 60 * 60 * 1000));
         
